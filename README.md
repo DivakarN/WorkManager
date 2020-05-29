@@ -149,3 +149,15 @@ WorkManager.getInstance().
     .then(workRequest1)
     .then(workRequest2)
     .enqueue()
+    
+AlarmManager vs JobScheduler vs WorkManager:
+--------------------------------------------
+
+The main drawback of Alarm Manager is that it solely works on the basis of time.
+
+The main drawback of JobScheduler is that its run from API level 21 or higher.
+
+1) WorkManager combines both JobScheduler and AlarmManager. If JobScheduler is available, it will use it. If not it will check for Firebase JobDispatcher availability and try to use it. Otherwise, it will fallback to AlarmManager and BroadcastReceivers.
+2) Its ability to chain and combine tasks.
+3) It integrates with LiveData from Architecture Components, so you can observe its status and output data in a simple manner
+4) Exchanging data between app and Worker    
